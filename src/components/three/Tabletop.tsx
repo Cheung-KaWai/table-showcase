@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { BufferAttribute, ExtrudeGeometry, Mesh } from "three";
+import { BufferAttribute, Mesh } from "three";
 import { FC, useEffect, useRef } from "react";
 import { useShape } from "@/hooks/useShape";
 import { PointOffset, Shapes } from "@/types/types";
@@ -11,18 +11,11 @@ import { motion } from "framer-motion-3d";
 
 export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableShape, positionZ }) => {
   const tableRef = useRef<Mesh>(null);
-  const extrudeRef = useRef<ExtrudeGeometry>(null);
   const store = useTableStore();
 
   const extrudeGeo = useShape(tableShape);
 
   const cubes = useRef<PointOffset[]>([]);
-
-  // console.log(geometry.uuid);
-
-  useEffect(() => {
-    console.log(extrudeRef.current);
-  }, [extrudeRef.current]);
 
   // get normal direction for inwards polygon offset
   useEffect(() => {
@@ -67,7 +60,7 @@ export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableS
       seamlessUVs(tableRef.current.geometry, store.tableLength * 0.5, store.tableWidth * 0.5);
       // console.log("init", tableRef.current);
     }
-  }, [store.tableLength, store.tableWidth]);
+  }, []);
 
   return (
     <motion.group

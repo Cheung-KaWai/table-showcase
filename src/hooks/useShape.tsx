@@ -21,7 +21,7 @@ export const useShape = (shape: Shapes) => {
     const points = choosenShape();
     return new ExtrudeGeometry(new Shape(points), { bevelEnabled: false, depth: store.tableThickness, steps: store.tableSteps });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [store.tableLength, store.tableWidth]);
+  }, []);
 
   return extrude;
 
@@ -40,8 +40,8 @@ export const useShape = (shape: Shapes) => {
   }
 
   function getRoundedRectPoints(
-    length: number = store.tableLength,
-    width: number = store.tableWidth,
+    length: number = 2,
+    width: number = 1,
     radius: number = store.tablecornerRadius,
     cornerSegments: number = 128
   ): Vector2[] {
@@ -83,11 +83,11 @@ export const useShape = (shape: Shapes) => {
     return points;
   }
 
-  function getOvalPoints(length: number = store.tableLength, width: number = store.tableWidth): Vector2[] {
+  function getOvalPoints(length: number = 2, width: number = 1): Vector2[] {
     return getRoundedRectPoints(length, width, 2, 32);
   }
 
-  function getEllipsePoints(majorAxis: number = store.tableLength, minorAxis: number = store.tableWidth, segments: number = 256): Vector2[] {
+  function getEllipsePoints(majorAxis: number = 2, minorAxis: number = 1, segments: number = 256): Vector2[] {
     const points: Vector2[] = [];
     const angleStep = (2 * Math.PI) / segments;
 
