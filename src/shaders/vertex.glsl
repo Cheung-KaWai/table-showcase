@@ -7,6 +7,7 @@ varying vec3 vCustomNormal;
 varying vec3 vPosition;
 varying vec2 vNormal2D;
 
+uniform float uLength;
 uniform float uHeight;
 uniform float uSteps;
 uniform float uInsetTop;
@@ -18,12 +19,25 @@ uniform float uPreviousEdge;
 uniform float uEdgeTransition;
 
 #include "/src/shaders/edges.glsl"
+#include "/src/shaders/functions.glsl"
 
 void main(){
   vUv = uv;
   vCustomNormal = normalize(normal);
 
-  vec3 modifiedPosition = position;
+  float offset = (uLength/ 2. - 1.);
+  // float direction = step(0.5, position.x);
+  // direction = remap(direction,0.,1.,-1.,1.);
+  csm_Position.x += -normal2D.x * offset;
+
+
+  // scale inital shape but it streches the shape
+  // csm_Position.xy -= normal2D.xy * vec2((uLength/2.)-1.,0.);
+
+  // csm_Position = csm_Position * vec3((uLength/2.)-1., 1., 1.0);
+
+  // csm_Position.xy -= normal2D.xy * vec2((uLength * ((uLength/2.)-1.) / 2.0) - 1.0, 0.0);
+  // csm_Position.xy -= normal2D.xy * vec2((uLength * ((uLength/2.)-1.) / 2.0) - 1.0, 0.0);
 
   //new computed normals using neighbours technique
   vec3 biTangent = cross(normal, tangent.xyz);
