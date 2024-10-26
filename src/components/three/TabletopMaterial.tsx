@@ -101,6 +101,7 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
   return (
     <ThreeCustomShaderMaterial
       baseMaterial={MeshStandardMaterial}
+      transparent
       silent
       vertexShader={vertex}
       fragmentShader={fragment}

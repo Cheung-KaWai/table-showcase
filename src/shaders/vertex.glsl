@@ -5,6 +5,7 @@ attribute vec3 tangent;
 varying vec2 vUv;
 varying vec3 vCustomNormal;
 varying vec3 vPosition;
+varying vec3 vWorldPosition;
 varying vec2 vNormal2D;
 
 uniform float uLength;
@@ -83,5 +84,6 @@ void main(){
   vec3 toB = normalize(positionB -  csm_Position);
   csm_Normal = cross(toA,toB);
   vCustomNormal = csm_Normal;
+  vWorldPosition = (modelMatrix * vec4(csm_Position,1.)).xyz;
 
 }

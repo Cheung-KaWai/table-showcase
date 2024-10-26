@@ -64,7 +64,7 @@ export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableS
 
   return (
     <motion.group
-      position={[0, 0.74, positionZ]}
+      position={[0, 0, positionZ]}
       animate={{ z: positionZ }}
       transition={{ ease: "anticipate", duration: 1 }}
       onClick={() => {

@@ -3,6 +3,7 @@
 varying vec2 vUv;
 varying vec3 vCustomNormal;
 varying vec3 vPosition;
+varying vec3 vWorldPosition;
 varying vec3 vNormals2;
 varying vec2 vNormal2D;
 
@@ -59,7 +60,16 @@ void main(){
   vec3 previousColor = uColorPrevious;
   vec3 transitionColor = mix(uColorPrevious,uColor,transition);
 
+
+  float edge0 = 0.75;    // Start of fade-out
+  float edge1 = 2.;     // End of fade-out
+
+  float alpha = smoothstep(edge1, edge0, abs(vWorldPosition.z));
+
   diffuseMap.xyz = color * transitionColor;
+  // diffuseMap.a = alpha;
+  diffuseMap.xyz = vec3(alpha);
+
   // diffuseMap.xyz = vec3(transition);
 
   csm_DiffuseColor = diffuseMap;
