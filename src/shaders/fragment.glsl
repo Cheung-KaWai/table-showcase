@@ -13,6 +13,7 @@ uniform vec3 uColorPrevious;
 uniform float uColorTransition;
 uniform float uHeight;
 uniform float uSteps;
+uniform float uEdgeTransition;
 
 void main(){
   vec4 diffuseMap = texture2D(map,vUv);
@@ -37,7 +38,7 @@ void main(){
   //     vec4 offsetDiffuseMap = texture2D(map, offsetUv);
 
   //     // Use the color from the offset sample for the rounded edges
-  //     color = mix(color,offsetDiffuseMap.xyz,percentage);
+  //     color = mix(color,offsetDiffuseMap.xyz,percentage * uEdgeTransition);
   // }
 
   

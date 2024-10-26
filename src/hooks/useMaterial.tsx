@@ -21,7 +21,7 @@ export const useMaterial = () => {
   // normalMap.colorSpace = LinearSRGBColorSpace;
   // normalMap.flipY = false;
 
-  const roughnessMap = useTexture("/r2.png");
+  const roughnessMap = useTexture("/r3.png");
   roughnessMap.wrapS = roughnessMap.wrapT = RepeatWrapping;
   roughnessMap.anisotropy = gl.capabilities.getMaxAnisotropy();
   roughnessMap.colorSpace = LinearSRGBColorSpace;

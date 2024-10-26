@@ -8,7 +8,7 @@ export const useLevaDebug = () => {
     length: {
       value: 2.4,
       min: 0,
-      max: 3,
+      max: 4,
       step: 0.1,
       onChange: (value) => update({ tableLength: value }),
     },

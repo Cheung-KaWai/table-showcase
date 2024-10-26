@@ -51,13 +51,13 @@ export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableS
         const posX = positions[i + 0];
         const posY = positions[i + 1];
         const nor = offsetData.find((offset) => offset.pos.x === posX && offset.pos.y === posY)?.nor;
-        vertexNormals[i + 0] = tableShape === "rectangle" ? -nor!.x : nor!.x;
-        vertexNormals[i + 1] = tableShape === "rectangle" ? -nor!.y : nor!.y;
+        vertexNormals[i + 0] = ["rectangle"].includes(tableShape) ? -nor!.x : nor!.x;
+        vertexNormals[i + 1] = ["rectangle"].includes(tableShape) ? -nor!.y : nor!.y;
         vertexNormals[i + 2] = 0;
       }
       tableRef.current.geometry.setAttribute("normal2D", new BufferAttribute(vertexNormals, 3));
       cubes.current = offsetData;
-      seamlessUVs(tableRef.current.geometry, store.tableLength * 0.5, store.tableWidth * 0.5);
+      seamlessUVs(tableRef.current.geometry, 2 * 0.5, 1 * 0.5);
       // console.log("init", tableRef.current);
     }
   }, []);

@@ -2,6 +2,9 @@ import { Shapes } from "@/types/types";
 import { ExtrudeGeometry, Shape, Vector2 } from "three";
 import { useTableStore } from "../store/Tablestore";
 import { useMemo } from "react";
+import abu from "@/data/abu.json";
+import pebble from "@/data/pebble.json";
+import paper from "@/data/paper.json";
 
 export const useShape = (shape: Shapes) => {
   const store = useTableStore();
@@ -12,6 +15,9 @@ export const useShape = (shape: Shapes) => {
     rectangle: getRoundedRectPoints,
     oval: getOvalPoints,
     ellipse: getEllipsePoints,
+    abu: getAbuPoints,
+    pebble: getPebblePoints,
+    paper: getPaperPoints,
   };
 
   // return shapes[shape];
@@ -24,6 +30,18 @@ export const useShape = (shape: Shapes) => {
   }, []);
 
   return extrude;
+
+  function getAbuPoints() {
+    return abu.map((x) => new Vector2(x[0], x[1]));
+  }
+
+  function getPebblePoints() {
+    return pebble.map((x) => new Vector2(x[0], x[1]));
+  }
+
+  function getPaperPoints() {
+    return paper.map((x) => new Vector2(x[0], x[1]));
+  }
 
   function getCirclePoints(radius: number = store.tableDiameter / 2, segments: number = 128): Vector2[] {
     const points: Vector2[] = [];
@@ -64,7 +82,7 @@ export const useShape = (shape: Shapes) => {
         points.push(new Vector2(cx, cy));
       }
     }
-
+    
     // Start from top-right corner and move clockwise
     points.push(new Vector2(halfLength - clampedRadius, halfWidth)); // Top-right straight line
     addCornerPoints(halfLength - clampedRadius, halfWidth - clampedRadius, 0, Math.PI / 2); // Top-right rounded corner

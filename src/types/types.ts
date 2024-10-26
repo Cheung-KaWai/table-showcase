@@ -1,4 +1,4 @@
-export type Shapes = "circle" | "rectangle" | "oval" | "ellipse";
+export type Shapes = "circle" | "rectangle" | "oval" | "ellipse" | "abu";
 
 export interface Point {
   x: number;

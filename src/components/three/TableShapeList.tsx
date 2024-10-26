@@ -5,7 +5,7 @@ import { useLevaDebug } from "@/hooks/useLevaDebug";
 
 export const TableShapeList = () => {
   useLevaDebug();
-  const listShapes = ["oval", "rectangle", "ellipse"];
+  const listShapes = ["rectangle", "oval", "ellipse", "abu", "pebble", "paper"];
   const currentShape = useTableStore((state) => state.tableShape);
   const width = useTableStore((state) => state.tableWidth);
   const currentShapeIndex = listShapes.indexOf(currentShape);

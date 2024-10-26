@@ -8,7 +8,7 @@ import { TableShapeList } from "./TableShapeList";
 
 export const Scene = () => {
   return (
-    <Canvas gl={{ toneMappingExposure: 2, toneMapping: ACESFilmicToneMapping }}>
+    <Canvas gl={{ toneMappingExposure: 3, toneMapping: ACESFilmicToneMapping }}>
       <Perf position="top-left" />
       <TableShapeList />
       <Tableleg />
