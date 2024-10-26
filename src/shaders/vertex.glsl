@@ -9,6 +9,7 @@ varying vec2 vNormal2D;
 
 uniform float uLength;
 uniform float uWidth;
+uniform bool uOval;
 uniform float uHeight;
 uniform float uSteps;
 uniform float uInsetTop;
@@ -26,11 +27,21 @@ void main(){
   vUv = uv;
   vCustomNormal = normalize(normal);
 
-  float offset = (uLength/ 2. - 1.);
-  csm_Position.x *= uLength/2.;
-  csm_Position.y *= uWidth;
-  vUv.x *= uLength/2.;
-  vUv.y *= uWidth;
+  if(uOval){
+    float offset = (uLength/ 2. - 1.);
+    csm_Position.x += normalize(-normal2D.x) * offset;  
+    csm_Position.y *= uWidth;
+    vUv.x += normalize(-normal2D.x) * offset;  
+    vUv.y *= uWidth;
+  }else{
+    csm_Position.x *= uLength / 2.;
+    csm_Position.y *= uWidth;
+    vUv.x *= uLength/2.;
+    vUv.y *= uWidth;
+  }
+
+
+
 
 
   // scale inital shape but it streches the shape

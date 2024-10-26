@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 interface Tablestate {
+  showPerf: boolean;
   tableShape: string;
   tableLength: number;
   tableWidth: number;
@@ -27,7 +28,8 @@ interface Tablestate {
 }
 
 export const useTableStore = create<Tablestate>()((set) => ({
-  tableShape: "oval",
+  showPerf: false,
+  tableShape: "rectangle",
   tableLength: 2.4,
   tableWidth: 1,
   tableDiameter: 1,

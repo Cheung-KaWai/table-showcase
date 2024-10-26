@@ -5,6 +5,7 @@ export const useLevaDebug = () => {
   const update = useTableStore((state) => state.update);
 
   useControls("tabletop", {
+    showPerf: { value: false, onChange: (value) => update({ showPerf: value }) },
     length: {
       value: 2.4,
       min: 0,
@@ -82,10 +83,10 @@ export const useLevaDebug = () => {
     },
 
     wireframe: { value: false, onChange: (value) => update({ wireframe: value }) },
-    shapes: {
-      options: ["oval", "rectangle", "ellipse"],
-      onChange: (value) => update({ tableShape: value }),
-    },
+    // shapes: {
+    //   options: ["oval", "rectangle", "ellipse"],
+    //   onChange: (value) => update({ tableShape: value }),
+    // },
     material: {
       // options: ["debug.jpg", "color.webp"],
       options: ["color.jpg", "debug.jpg"],

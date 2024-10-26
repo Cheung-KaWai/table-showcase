@@ -73,7 +73,7 @@ export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableS
       }}
     >
       <mesh rotation={[Math.PI / 2, 0, 0]} ref={tableRef} geometry={extrudeGeo}>
-        <TabletopMaterial />
+        <TabletopMaterial shape={tableShape} />
       </mesh>
     </motion.group>
   );

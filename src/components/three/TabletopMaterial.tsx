@@ -5,10 +5,10 @@ import vertex from "@/shaders/vertex.glsl";
 import { Color, MeshStandardMaterial, Uniform } from "three";
 import ThreeCustomShaderMaterial from "three-custom-shader-material";
 import { useTableStore } from "../../store/Tablestore";
-import { useEffect, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import gsap from "gsap";
 
-export const TabletopMaterial = () => {
+export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
   const maps = useMaterial();
   const {
     tableLength,
@@ -25,7 +25,6 @@ export const TabletopMaterial = () => {
     insetTop,
     wireframe,
   } = useTableStore();
-
   const uniforms = useMemo(
     () => ({
       uLength: new Uniform(tableLength),
@@ -40,6 +39,7 @@ export const TabletopMaterial = () => {
       uColorTransition: new Uniform(0),
       uCurrentEdge: new Uniform(currentEdge),
       uPreviousEdge: new Uniform(previousEdge),
+      uOval: new Uniform(shape === "oval"),
       uEdgeTransition: new Uniform(0),
       uVerticalEdgeThickness: new Uniform(verticalEdgeThickness),
     }),

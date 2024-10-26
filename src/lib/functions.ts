@@ -130,3 +130,27 @@ export function orderPointsByProximity(points: Point[]): Point[] {
 
   return orderedList;
 }
+
+export function calculateCirclePositions(numObjects = 6, radius = 2.5) {
+  const positionsAndRotations = [];
+
+  for (let i = 0; i < numObjects; i++) {
+    // Calculate the angle for each object
+    const angle = (i / numObjects) * Math.PI * 2;
+
+    // Convert polar coordinates to Cartesian coordinates
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
+
+    // Calculate rotation to face the center
+    const rotationY = -angle;
+
+    // Push position and rotation values into array
+    positionsAndRotations.push({
+      position: [x, 0, z],
+      rotation: [0, rotationY, 0],
+    });
+  }
+
+  return positionsAndRotations as [{ position: [x: number, y: number, z: number]; rotation: [x: number, y: number, z: number] }];
+}
