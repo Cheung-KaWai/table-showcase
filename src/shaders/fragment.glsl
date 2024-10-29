@@ -67,8 +67,8 @@ void main(){
   float alpha = smoothstep(edge1, edge0, abs(vWorldPosition.z));
 
   diffuseMap.xyz = color * transitionColor;
-  // diffuseMap.a = alpha;
-  diffuseMap.xyz = vec3(alpha);
+  diffuseMap.a = alpha;
+  // diffuseMap.xyz = vec3(alpha);
 
   // diffuseMap.xyz = vec3(transition);
 

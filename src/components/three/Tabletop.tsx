@@ -63,15 +63,7 @@ export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableS
   }, []);
 
   return (
-    <motion.group
-      position={[0, 0, positionZ]}
-      animate={{ z: positionZ }}
-      transition={{ ease: "anticipate", duration: 1 }}
-      onClick={() => {
-        console.log(tableRef.current);
-        store.update({ tableShape: tableShape });
-      }}
-    >
+    <motion.group position={[0, 0, positionZ]} animate={{ z: positionZ }} transition={{ ease: "linear", duration: 0.3 }}>
       <mesh rotation={[Math.PI / 2, 0, 0]} ref={tableRef} geometry={extrudeGeo}>
         <TabletopMaterial shape={tableShape} />
       </mesh>
