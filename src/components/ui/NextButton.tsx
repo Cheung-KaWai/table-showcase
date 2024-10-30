@@ -39,7 +39,7 @@ const TextContainer = styled.div<{ $disable: boolean }>`
 
   &::before {
     content: "";
-    transition: all 0.6s ease-in-out;
+    transition: all 0.6s cubic-bezier(0.02, -0.07, 0, 1.82);
     box-sizing: border-box;
     display: inline-block;
     width: 8px;
@@ -55,13 +55,13 @@ const TextContainer = styled.div<{ $disable: boolean }>`
     text-transform: uppercase;
     max-width: 0;
     font-weight: 400;
-    transition: all 0.6s ease-in-out;
+    transition: all 0.6s cubic-bezier(0.02, -0.07, 0, 1.82);
   }
 
   &:hover {
     &::before {
-      width: ${(props) => (props.$disable ? "8px" : "16px")};
-      height: ${(props) => (props.$disable ? "8px" : "0px")};
+      width: ${(props) => (props.$disable ? "8" : "16px")};
+      height: ${(props) => (props.$disable ? "8" : "0px")};
       border-radius: ${(props) => (props.$disable ? "50%" : "10px")};
     }
 
