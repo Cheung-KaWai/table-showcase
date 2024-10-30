@@ -1,11 +1,20 @@
-import { useState } from "react";
-import styled from "styled-components";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import { useTableStore } from "../../store/Tablestore";
 
 export const Menu = () => {
   const [open, setOpen] = useState(false);
   const step = useTableStore((state) => state.step);
+  const [currentStep, setcurrentStep] = useState(step);
+  const [previousStep, setpreviousStep] = useState(step);
+
   const update = useTableStore((state) => state.update);
+
+  useEffect(() => {
+    setpreviousStep(currentStep);
+    setcurrentStep(step);
+  }, [step]);
 
   const handleMenu = (menuStep: number) => {
     update({ step: menuStep });
@@ -14,9 +23,14 @@ export const Menu = () => {
   return (
     <Container onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
       <MenuContainer>
-        <MenuTitle>
-          <span>{step + 1}</span> Menu
-        </MenuTitle>
+        <MenuHeaderContainer>
+          <NumberContainer>
+            <StepNumber key={currentStep} $currentStep={currentStep}>
+              {previousStep + 1}
+            </StepNumber>
+          </NumberContainer>
+          <MenuTitle>Menu</MenuTitle>
+        </MenuHeaderContainer>
         <MenuItemContainer $open={open}>
           <Dot $step={step} />
           <MenuItem $open={open} $selected={step === 0} onClick={() => handleMenu(0)}>
@@ -45,6 +59,52 @@ export const Menu = () => {
     </Container>
   );
 };
+
+const slideDown = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(200%);
+  }
+`;
+
+const MenuHeaderContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 1rem;
+  align-items: center;
+`;
+
+const NumberContainer = styled.div`
+  overflow: hidden;
+  height: 23px;
+`;
+
+const StepNumber = styled.span<{ $currentStep: number }>`
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  position: relative;
+  width: 20px;
+  justify-content: center;
+  text-align: center;
+  line-height: 20px;
+  transform: translateY(0); // Reset position initially
+  animation: ${slideDown} 0.6s 0.3s cubic-bezier(0.02, -0.07, 0.18, 1.31) forwards;
+
+  &::before {
+    content: "${(props) => props.$currentStep + 1}";
+    position: absolute;
+    box-sizing: border-box;
+    display: inline-block;
+    top: 0px;
+    transform: translateY(-200%);
+    text-align: center;
+    width: 20px;
+    left: 0px;
+  }
+`;
 
 const Dot = styled.span<{ $step: number }>`
   width: 8px;
@@ -104,7 +164,8 @@ const MenuTitle = styled.p`
   text-align: right;
   text-transform: uppercase;
   font-size: 12px;
-  padding-bottom: 1rem;
+  line-height: 20px;
+  display: inline-block;
 `;
 
 const MenuItem = styled.p<{ $open: boolean; $selected: boolean }>`
