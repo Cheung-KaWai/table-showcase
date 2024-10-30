@@ -5,13 +5,11 @@ import { useShape } from "@/hooks/useShape";
 import { PointOffset, Shapes } from "@/types/types";
 import { makeOffsetPoly, orderPointsByProximity, seamlessUVs } from "@/lib/functions";
 import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
-import { useTableStore } from "../../store/Tablestore";
 import { TabletopMaterial } from "./TabletopMaterial";
 import { motion } from "framer-motion-3d";
 
 export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableShape, positionZ }) => {
   const tableRef = useRef<Mesh>(null);
-  const store = useTableStore();
 
   const extrudeGeo = useShape(tableShape);
 

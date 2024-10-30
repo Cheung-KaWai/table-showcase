@@ -39,7 +39,7 @@ const TextContainer = styled.div<{ $disable: boolean }>`
 
   &::before {
     content: "";
-    transition: all 0.3s ease-in-out;
+    transition: all 0.6s ease-in-out;
     box-sizing: border-box;
     display: inline-block;
     width: 8px;
@@ -55,7 +55,7 @@ const TextContainer = styled.div<{ $disable: boolean }>`
     text-transform: uppercase;
     max-width: 0;
     font-weight: 400;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.6s ease-in-out;
   }
 
   &:hover {
@@ -73,5 +73,5 @@ const TextContainer = styled.div<{ $disable: boolean }>`
 const Text = styled.p`
   font-size: 12px;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 300;
 `;
