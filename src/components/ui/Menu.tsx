@@ -75,6 +75,7 @@ const MenuHeaderContainer = styled.div`
   justify-content: flex-end;
   padding-bottom: 1rem;
   align-items: center;
+  cursor: default;
 `;
 
 const NumberContainer = styled.div`
@@ -156,6 +157,7 @@ const MenuContainer = styled.div`
 `;
 
 const MenuItemContainer = styled.div<{ $open: boolean }>`
+  background-color: white;
   display: flex;
   flex-direction: column;
   transition: ${(props) => (props.$open ? "all 0.3s 0.3s ease-in-out;" : "all 0.3s ease-in-out;")};
