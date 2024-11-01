@@ -1,20 +1,27 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useTableStore } from "../../store/Tablestore";
+import { menu } from "@/data/data";
 
 export const NextButton = () => {
   const [disable, setDisable] = useState(false);
+  const step = useTableStore((state) => state.step);
+  const update = useTableStore((state) => state.update);
 
   const handleClick = () => {
     setDisable(true);
 
     setTimeout(() => {
+      update({ step: step + 1 });
+    }, 300);
+    setTimeout(() => {
       setDisable(false);
-    }, 2000);
+    }, 1000);
   };
 
   return (
-    <Container $disable={disable} onClick={handleClick}>
-      <TextContainer>
+    <Container key={1} $disable={disable} onClick={handleClick}>
+      <TextContainer $text={menu[step + 1] ?? ""}>
         <Arrow className="arrowTop" />
         <Arrow2 className="arrowBottom" />
         <Text>Next Step</Text>
@@ -37,19 +44,19 @@ const Container = styled.div<{ $disable: boolean }>`
       }
 
       &::after {
-        max-width: ${(props) => (props.$disable ? 0 : " 100px")};
+        max-width: ${(props) => (props.$disable ? 0 : " 150px")};
       }
 
       .arrowTop {
         transition: transform 0.2s 0.55s cubic-bezier(0.02, -0.07, 0, 1.82);
         transform: rotate(30deg);
-        opacity: 1;
+        opacity: ${(props) => (props.$disable ? 0 : 1)};
       }
 
       .arrowBottom {
         transition: transform 0.2s 0.55s cubic-bezier(0.02, -0.07, 0, 1.82);
         transform: rotate(-30deg);
-        opacity: 1;
+        opacity: ${(props) => (props.$disable ? 0 : 1)};
       }
     }
   }
@@ -77,7 +84,7 @@ const Arrow2 = styled.span`
   opacity: 0;
 `;
 
-const TextContainer = styled.div`
+const TextContainer = styled.div<{ $text: string }>`
   cursor: pointer;
   overflow: hidden;
   display: flex;
@@ -99,13 +106,14 @@ const TextContainer = styled.div`
   }
 
   &::after {
-    content: "dimensions";
+    content: "${(props) => props.$text}";
     display: inline-block;
     font-size: 12px;
     text-transform: uppercase;
     max-width: 0;
     font-weight: 400;
-    transition: all 2s cubic-bezier(0.02, -0.07, 0, 1.82);
+    white-space: nowrap;
+    transition: all 0.3s;
   }
 `;
 const Text = styled.p`

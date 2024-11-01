@@ -2,7 +2,7 @@ import { Shapes } from "@/types/types";
 import { Tabletop } from "./Tabletop";
 import { useTableStore } from "../../store/Tablestore";
 import { useLevaDebug } from "@/hooks/useLevaDebug";
-import { listShapes } from "@/data/listShapes";
+import { listShapes } from "@/data/data";
 
 export const TableShapeList = () => {
   useLevaDebug();

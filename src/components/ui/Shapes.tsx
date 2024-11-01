@@ -1,4 +1,4 @@
-import { listShapes } from "@/data/listShapes";
+import { listShapes } from "@/data/data";
 import styled from "styled-components";
 import { useTableStore } from "../../store/Tablestore";
 
