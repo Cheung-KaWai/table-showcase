@@ -31,6 +31,10 @@ export const Menu = () => {
             </StepNumber>
           </NumberContainer>
           <MenuTitle>Menu</MenuTitle>
+          <MenuIconContainer className="icon" $open={open}>
+            <MenuIcon />
+            <MenuIcon />
+          </MenuIconContainer>
         </MenuHeaderContainer>
         <MenuItemContainer $open={open}>
           <Dot $step={step} />
@@ -68,6 +72,21 @@ const slideDown = keyframes`
   to {
     transform: translateY(200%);
   }
+`;
+
+const MenuIconContainer = styled.div<{ $open: boolean }>`
+  display: flex;
+  gap: 1px;
+  transition: all 0.6s cubic-bezier(0.02, -0.07, 0, 1.82);
+  flex-direction: column;
+  margin-left: 6px;
+`;
+
+const MenuIcon = styled.span`
+  width: 4px;
+  height: 4px;
+  background-color: black;
+  border-radius: 50%;
 `;
 
 const MenuHeaderContainer = styled.div`
@@ -146,6 +165,10 @@ const Container = styled.div`
         transform: rotate(0deg);
         p {
           transform: translateX(0);
+        }
+
+        .icon {
+          transform: rotate(90deg);
         }
       }
     }
