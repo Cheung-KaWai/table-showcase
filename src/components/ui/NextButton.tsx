@@ -55,7 +55,7 @@ const TextContainer = styled.div<{ $disable: boolean }>`
     text-transform: uppercase;
     max-width: 0;
     font-weight: 400;
-    transition: all 0.6s cubic-bezier(0.02, -0.07, 0, 1.82);
+    transition: all 2s cubic-bezier(0.02, -0.07, 0, 1.82);
   }
 
   &:hover {

@@ -25,6 +25,7 @@ export const Menu = () => {
       <MenuContainer>
         <MenuHeaderContainer>
           <NumberContainer>
+            <StepNumberFixed>0</StepNumberFixed>
             <StepNumber key={currentStep} $currentStep={currentStep}>
               {previousStep + 1}
             </StepNumber>
@@ -81,6 +82,15 @@ const NumberContainer = styled.div`
   height: 23px;
 `;
 
+const StepNumberFixed = styled.span`
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  position: relative;
+  width: 2px;
+  line-height: 20px;
+`;
+
 const StepNumber = styled.span<{ $currentStep: number }>`
   display: inline-block;
   text-transform: uppercase;
@@ -116,9 +126,9 @@ const Dot = styled.span<{ $step: number }>`
   border-radius: 50%;
   position: absolute;
   right: 1.5rem;
-  margin: 6.5px;
+  margin: 5px;
   margin-right: 0;
-  transform: translateY(${(props) => props.$step * 36}px);
+  transform: translateY(${(props) => props.$step * 33.5}px);
 `;
 
 const Container = styled.div`
@@ -149,10 +159,10 @@ const MenuItemContainer = styled.div<{ $open: boolean }>`
   display: flex;
   flex-direction: column;
   transition: ${(props) => (props.$open ? "all 0.3s 0.3s ease-in-out;" : "all 0.3s ease-in-out;")};
-  border-radius: 10px;
+  border-radius: 12px;
   gap: 1em;
   max-height: 0;
-  padding: 1.5rem;
+  padding: 2em;
   overflow: hidden;
   opacity: 0;
   transform: rotate(-5deg);
@@ -171,7 +181,7 @@ const MenuTitle = styled.p`
 const MenuItem = styled.p<{ $open: boolean; $selected: boolean }>`
   font-weight: 200;
   font-family: "REM", serif;
-  font-size: 16px;
+  font-size: 14px;
   opacity: ${(props) => (props.$selected ? 1 : 0.3)};
   transform: translateX(0px);
   transition: ${(props) => (props.$open ? "all 0.3s ease-in-out;" : "all 0.3s 0.3s ease-in-out;")};
