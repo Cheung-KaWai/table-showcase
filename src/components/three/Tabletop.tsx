@@ -7,6 +7,7 @@ import { makeOffsetPoly, orderPointsByProximity, seamlessUVs } from "@/lib/funct
 import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { TabletopMaterial } from "./TabletopMaterial";
 import { motion } from "framer-motion-3d";
+import { useTableStore } from "../../store/Tablestore";
 
 export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableShape, positionZ }) => {
   const tableRef = useRef<Mesh>(null);
@@ -14,6 +15,7 @@ export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableS
   const extrudeGeo = useShape(tableShape);
 
   const cubes = useRef<PointOffset[]>([]);
+  const animationSpeed = useTableStore((state) => state.animationspeed);
 
   // get normal direction for inwards polygon offset
   useEffect(() => {
@@ -61,7 +63,7 @@ export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableS
   }, []);
 
   return (
-    <motion.group position={[0, 0, positionZ]} animate={{ z: positionZ }} transition={{ ease: "linear", duration: 0.3 }}>
+    <motion.group position={[0, 0, positionZ]} animate={{ z: positionZ }} transition={{ ease: "linear", duration: 0.3 * animationSpeed }}>
       <mesh rotation={[Math.PI / 2, 0, 0]} ref={tableRef} geometry={extrudeGeo}>
         <TabletopMaterial shape={tableShape} />
       </mesh>

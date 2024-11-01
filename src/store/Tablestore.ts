@@ -25,6 +25,7 @@ interface Tablestate {
   uniquePoints: Array<{ x: number; y: number }>;
   selectedCube: number;
   step: number;
+  animationspeed: number;
   update: (options: Partial<Tablestate>) => void;
 }
 
@@ -53,5 +54,6 @@ export const useTableStore = create<Tablestate>()((set) => ({
   uniquePoints: [],
   selectedCube: 0,
   step: 0,
+  animationspeed: 1,
   update: (options) => set((state) => ({ ...state, ...options })),
 }));

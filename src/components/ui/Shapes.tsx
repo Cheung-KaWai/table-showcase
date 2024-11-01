@@ -8,7 +8,14 @@ export const Shapes = () => {
   return (
     <Menu>
       {listShapes.map((x, index) => (
-        <MenuItem $active={tableShape === x} onMouseEnter={() => update({ tableShape: x })} key={index}>
+        <MenuItem
+          $active={tableShape === x}
+          onMouseEnter={() => {
+            const oldIndex = listShapes.indexOf(tableShape);
+            update({ tableShape: x, animationspeed: Math.abs(oldIndex - index) });
+          }}
+          key={index}
+        >
           {x}
         </MenuItem>
       ))}
