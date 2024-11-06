@@ -100,7 +100,7 @@ const LineLength = styled.div<{ $scale: number; $show: boolean }>`
   height: 1px;
   background-color: #3b444b;
   transform: scaleX(${(props) => (props.$show ? 1 : 0)});
-  transition: ${(props) => (props.$show ? "all 0.3s 0.2s ease-in-out" : "all 0.3s 0.4s ease-in-out")};
+  transition: ${(props) => (props.$show ? "all 0.3s 0.2s ease-in-out" : "all 0.2s 0.4s ease-in-out")};
   /* transform: scaleX(${(props) => props.$scale}); */
 `;
 
@@ -109,7 +109,7 @@ const LineWidth = styled.div<{ $scale: number; $show: boolean }>`
   height: 1px;
   transform: scaleX(${(props) => (props.$show ? 1 : 0)});
   background-color: #3b444b;
-  transition: ${(props) => (props.$show ? "all 0.3s 0.2s ease-in-out" : "all 0.3s 0.4s ease-in-out")};
+  transition: ${(props) => (props.$show ? "all 0.3s 0.2s ease-in-out" : "all 0.2s 0.4s ease-in-out")};
   /* transform: scaleX(${(props) => props.$scale}); */
 `;
 
@@ -147,5 +147,5 @@ const Circle = styled.div<{ $show: boolean }>`
   border-radius: 1px;
   background-color: #3b444b;
   transform: scaleX(${(props) => (props.$show ? 1 : 0)});
-  transition: ${(props) => (props.$show ? "all 0.3s 0.7s cubic-bezier(0.02, -0.07, 0, 1.82)" : "all 0.2s ease-in-out")};
+  transition: ${(props) => (props.$show ? "all 0.3s 0.6s cubic-bezier(0.02, -0.07, 0, 1.82)" : "all 0.2s ease-in-out")};
 `;

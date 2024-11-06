@@ -62,7 +62,7 @@ void main(){
 
 
   float edge0 = 0.75;    // Start of fade-out
-  float edge1 = 5.;     // End of fade-out
+  float edge1 = 4.;     // End of fade-out
 
   float alpha = smoothstep(edge1, edge0, abs(vWorldPosition.z));
 
