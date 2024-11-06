@@ -62,12 +62,12 @@ void main(){
 
 
   float edge0 = 0.75;    // Start of fade-out
-  float edge1 = 2.;     // End of fade-out
+  float edge1 = 5.;     // End of fade-out
 
   float alpha = smoothstep(edge1, edge0, abs(vWorldPosition.z));
 
   diffuseMap.xyz = color * transitionColor;
-  diffuseMap.a = alpha;
+  diffuseMap.a = pow(alpha,8.);
   // diffuseMap.xyz = vec3(alpha);
 
   // diffuseMap.xyz = vec3(transition);

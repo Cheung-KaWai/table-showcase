@@ -11,4 +11,7 @@ export default defineConfig({
     glsl(),
     tsconfigPaths(),
   ],
+  server: {
+    port: 5174,
+  },
 });

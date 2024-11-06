@@ -45,17 +45,19 @@ const Container = styled.div<{ $disable: boolean }>`
 
       &::after {
         max-width: ${(props) => (props.$disable ? 0 : " 150px")};
+        margin-left: ${(props) => (props.$disable ? "0" : "5px")};
       }
 
       .arrowTop {
         transition: transform 0.2s 0.55s cubic-bezier(0.02, -0.07, 0, 1.82);
         transform: rotate(30deg);
         opacity: ${(props) => (props.$disable ? 0 : 1)};
+        transform: ${(props) => (props.$disable ? "rotate(0deg)" : "rotate(30deg)")};
       }
 
       .arrowBottom {
         transition: transform 0.2s 0.55s cubic-bezier(0.02, -0.07, 0, 1.82);
-        transform: rotate(-30deg);
+        transform: ${(props) => (props.$disable ? "rotate(0deg)" : "rotate(-30deg)")};
         opacity: ${(props) => (props.$disable ? 0 : 1)};
       }
     }
@@ -71,6 +73,7 @@ const Arrow = styled.span`
   border-radius: 10px;
   margin-left: 7px;
   opacity: 0;
+  margin-right: 5px;
 `;
 
 const Arrow2 = styled.span`
@@ -82,6 +85,7 @@ const Arrow2 = styled.span`
   border-radius: 10px;
   margin-left: 7px;
   opacity: 0;
+  margin-right: 5px;
 `;
 
 const TextContainer = styled.div<{ $text: string }>`
@@ -89,7 +93,7 @@ const TextContainer = styled.div<{ $text: string }>`
   overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0px;
   letter-spacing: 1px;
 
   padding-top: 2rem;
@@ -103,11 +107,13 @@ const TextContainer = styled.div<{ $text: string }>`
     height: 8px;
     border: 1px solid;
     border-radius: 50%;
+    margin-right: 5px;
   }
 
   &::after {
     content: "${(props) => props.$text}";
     display: inline-block;
+    box-sizing: border-box;
     font-size: 12px;
     text-transform: uppercase;
     max-width: 0;

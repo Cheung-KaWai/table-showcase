@@ -5,6 +5,7 @@ import { ACESFilmicToneMapping } from "three";
 import { TableShapeList } from "./TableShapeList";
 import { PerfMonitor } from "../primitives/PerfMonitor";
 import { Camera } from "./Camera";
+import { LineDimensions } from "./LineDimensions";
 
 export const Scene = () => {
   return (
@@ -12,6 +13,7 @@ export const Scene = () => {
       <PerfMonitor />
       <TableShapeList />
       <Camera />
+      <LineDimensions />
       {/* <Tableleg /> */}
       <Lights />
     </Canvas>
