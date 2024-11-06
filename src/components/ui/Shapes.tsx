@@ -5,8 +5,10 @@ import { useTableStore } from "../../store/Tablestore";
 export const Shapes = () => {
   const update = useTableStore((state) => state.update);
   const tableShape = useTableStore((state) => state.tableShape);
+  const step = useTableStore((state) => state.step);
+  const show = step === 0;
   return (
-    <Menu>
+    <Menu $show={show}>
       {listShapes.map((x, index) => (
         <MenuItem
           $active={tableShape === x}
@@ -23,11 +25,15 @@ export const Shapes = () => {
   );
 };
 
-const Menu = styled.div`
+const Menu = styled.div<{ $show: boolean }>`
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  pointer-events: ${(props) => (props.$show ? "default" : "none")};
+  opacity: ${(props) => (props.$show ? 1 : 0)};
+  transform-origin: center center;
+  transform: ${(props) => (props.$show ? "translateY(-50%) translateX(0%)" : "translateY(-50%)  translateX(-5%)")};
+  transition: ${(props) => (props.$show ? "all 0.3s 0.6s ease-in-out" : "all 0.3s ease-in-out")};
   display: flex;
   flex-direction: column;
   gap: 1.5rem;

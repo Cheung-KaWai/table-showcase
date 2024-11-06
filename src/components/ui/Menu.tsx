@@ -38,25 +38,25 @@ export const Menu = () => {
         </MenuHeaderContainer>
         <MenuItemContainer $open={open}>
           <Dot $step={step} />
-          <MenuItem $open={open} $selected={step === 0} onClick={() => handleMenu(0)}>
+          <MenuItem $open={open} $selected={step === 0} onClick={() => handleMenu(0)} $step={"01"}>
             Shape
           </MenuItem>
-          <MenuItem $open={open} $selected={step === 1} onClick={() => handleMenu(1)}>
+          <MenuItem $open={open} $selected={step === 1} onClick={() => handleMenu(1)} $step={"02"}>
             Dimensions
           </MenuItem>
-          <MenuItem $open={open} $selected={step === 2} onClick={() => handleMenu(2)}>
+          <MenuItem $open={open} $selected={step === 2} onClick={() => handleMenu(2)} $step={"03"}>
             Finishing
           </MenuItem>
-          <MenuItem $open={open} $selected={step === 3} onClick={() => handleMenu(3)}>
+          <MenuItem $open={open} $selected={step === 3} onClick={() => handleMenu(3)} $step={"04"}>
             Table Material
           </MenuItem>
-          <MenuItem $open={open} $selected={step === 4} onClick={() => handleMenu(4)}>
-            Leg
+          <MenuItem $open={open} $selected={step === 4} onClick={() => handleMenu(4)} $step={"05"}>
+            Leg Model
           </MenuItem>
-          <MenuItem $open={open} $selected={step === 5} onClick={() => handleMenu(5)}>
+          <MenuItem $open={open} $selected={step === 5} onClick={() => handleMenu(5)} $step={"06"}>
             Leg Material
           </MenuItem>
-          <MenuItem $open={open} $selected={step === 6} onClick={() => handleMenu(6)}>
+          <MenuItem $open={open} $selected={step === 6} onClick={() => handleMenu(6)} $step={"07"}>
             Overview
           </MenuItem>
         </MenuItemContainer>
@@ -203,7 +203,7 @@ const MenuTitle = styled.p`
   display: inline-block;
 `;
 
-const MenuItem = styled.p<{ $open: boolean; $selected: boolean }>`
+const MenuItem = styled.p<{ $open: boolean; $selected: boolean; $step: string }>`
   font-weight: 200;
   font-family: "REM", serif;
   font-size: 14px;
@@ -214,6 +214,8 @@ const MenuItem = styled.p<{ $open: boolean; $selected: boolean }>`
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+  position: relative;
+  padding-left: 1.2rem;
 
   &::after {
     content: "";
@@ -223,6 +225,15 @@ const MenuItem = styled.p<{ $open: boolean; $selected: boolean }>`
     transition: ${(props) => (props.$open ? "all 0.3s ease-in-out;" : "all 0.3s 0.3s ease-in-out;")};
     display: inline-block;
     border-radius: 50%;
+  }
+
+  &::before {
+    content: "${(props) => props.$step}";
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    font-size: 10px;
   }
 
   &:hover {

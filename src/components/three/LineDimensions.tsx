@@ -10,30 +10,17 @@ export const LineDimensions = () => {
   const thickness = useTableStore((state) => state.tableThickness);
   const step = useTableStore((state) => state.step);
   const offset = 0.1;
-  // const sideLength = 0.02;
-
-  // Set up animation properties
-  // const mainLineAnimation = {
-  //   initial: { scale: 0 },
-  //   animate: { scale: length },
-  //   transition: { duration: 0.3 }, // Duration for each animation
-  // };
-
-  // const sideLineAnimation = {
-  //   initial: { scale: 0 },
-  //   animate: { scale: 1 },
-  //   transition: { duration: 0.3 }, // Duration for each animation
-  // };
+  const show = step === 1;
 
   return (
     <>
       <group>
         <Html position={[0, -thickness / 2, -width / 2 - offset]} center transform rotation={[-Math.PI / 2, 0, Math.PI]} distanceFactor={1}>
-          <LineLength $scale={length} $show={step === 1} />
+          <LineLength $scale={length} $show={show} />
         </Html>
         <Html position={[0, -thickness / 2, -width / 2 - offset]} center transform rotation={[-Math.PI / 2, 0, 0]} distanceFactor={1}>
-          <MeasurmentBorder $show={step === 1}>
-            <Measurment $show={step === 1} $value={(length * 100).toFixed(0) + " cm"}>
+          <MeasurmentBorder $show={show}>
+            <Measurment $show={show} $value={(length * 100).toFixed(0) + " cm"}>
               {(length * 100).toFixed(0)} cm
             </Measurment>
           </MeasurmentBorder>
@@ -46,7 +33,7 @@ export const LineDimensions = () => {
           rotation={[-Math.PI / 2, 0, Math.PI]}
           distanceFactor={1}
         >
-          <Circle $show={step === 1} />
+          <Circle $show={show} />
         </Html>
 
         <Html
@@ -56,16 +43,16 @@ export const LineDimensions = () => {
           rotation={[-Math.PI / 2, 0, Math.PI]}
           distanceFactor={1}
         >
-          <Circle $show={step === 1} />
+          <Circle $show={show} />
         </Html>
       </group>
       <group>
         <Html position={[-length / 2 - offset, -thickness / 2, 0]} center transform rotation={[-Math.PI / 2, 0, Math.PI / 2]} distanceFactor={1}>
-          <LineWidth $scale={width} $show={step === 1} />
+          <LineWidth $scale={width} $show={show} />
         </Html>
         <Html position={[-length / 2 - offset, -thickness / 2, 0]} center transform rotation={[-Math.PI / 2, 0, Math.PI / 2]} distanceFactor={1}>
-          <MeasurmentBorder $show={step === 1}>
-            <Measurment $show={step === 1} $value={(width * 100).toFixed(0) + " cm"}>
+          <MeasurmentBorder $show={show}>
+            <Measurment $show={show} $value={(width * 100).toFixed(0) + " cm"}>
               {(width * 100).toFixed(0)} cm
             </Measurment>
           </MeasurmentBorder>
