@@ -24,6 +24,7 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
     verticalEdgeThickness,
     insetTop,
     wireframe,
+    step,
   } = useTableStore();
   const uniforms = useMemo(
     () => ({
@@ -41,6 +42,7 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
       uPreviousEdge: new Uniform(previousEdge),
       uOval: new Uniform(shape === "oval"),
       uEdgeTransition: new Uniform(0),
+      uShapeOpacity: new Uniform(0),
       uVerticalEdgeThickness: new Uniform(verticalEdgeThickness),
     }),
     []
@@ -97,6 +99,34 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
       }
     );
   }, [currentEdge]);
+
+  useEffect(() => {
+    if (step !== 0) {
+      if (uniforms.uShapeOpacity.value === 0) {
+        gsap.fromTo(
+          uniforms.uShapeOpacity,
+          { value: 0 },
+          {
+            value: 1,
+            duration: 1,
+            ease: "linear",
+          }
+        );
+      }
+    } else {
+      if (uniforms.uShapeOpacity.value === 1) {
+        gsap.fromTo(
+          uniforms.uShapeOpacity,
+          { value: 1 },
+          {
+            value: 0,
+            duration: 1,
+            ease: "linear",
+          }
+        );
+      }
+    }
+  }, [step]);
 
   return (
     <ThreeCustomShaderMaterial

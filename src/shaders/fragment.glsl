@@ -15,6 +15,7 @@ uniform float uColorTransition;
 uniform float uHeight;
 uniform float uSteps;
 uniform float uEdgeTransition;
+uniform float uShapeOpacity;
 
 void main(){
   vec4 diffuseMap = texture2D(map,vUv);
@@ -62,7 +63,7 @@ void main(){
 
 
   float edge0 = 0.75;    // Start of fade-out
-  float edge1 = 4.;     // End of fade-out
+  float edge1 = mix(4.,2.,uShapeOpacity);     // End of fade-out
 
   float alpha = smoothstep(edge1, edge0, abs(vWorldPosition.z));
 
