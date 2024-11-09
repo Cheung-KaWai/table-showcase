@@ -1,4 +1,4 @@
-import { Html } from "@react-three/drei";
+import { Html, Scroll, ScrollControls } from "@react-three/drei";
 import { useTableStore } from "../../store/Tablestore";
 // import { Vector3 } from "three";
 // import { motion } from "framer-motion-3d";
@@ -29,21 +29,23 @@ export const LineDimensions = () => {
         >
           <LineLength $scale={length} $show={show} />
         </Html>
-        <Html
-          position={[0, -thickness / 2, -width / 2 - offset]}
-          center
-          transform
-          rotation={[-Math.PI / 2, 0, 0]}
-          distanceFactor={1}
-          zIndexRange={[0, 0]}
-        >
-          <MeasurmentBorder $show={show} onMouseEnter={() => setHoverLength(true)} onMouseLeave={() => setHoverLength(false)} $hover={hoverLength}>
-            <Measurment $show={show} $value={(length * 100).toFixed(0) + " cm"}>
-              <Icon />
-              {(length * 100).toFixed(0)} cm <Icon></Icon>
-            </Measurment>
-          </MeasurmentBorder>
-        </Html>
+        <ScrollControls enabled>
+          <Scroll>
+            <Html position={[0, -thickness / 2, -width / 2 - offset]} center transform rotation={[-Math.PI / 2, 0, 0]} distanceFactor={1}>
+              <MeasurmentBorder
+                $show={show}
+                onMouseEnter={() => setHoverLength(true)}
+                onMouseLeave={() => setHoverLength(false)}
+                $hover={hoverLength}
+              >
+                <Measurment $show={show} $value={(length * 100).toFixed(0) + " cm"}>
+                  <Icon />
+                  {(length * 100).toFixed(0)} cm <Icon></Icon>
+                </Measurment>
+              </MeasurmentBorder>
+            </Html>
+          </Scroll>
+        </ScrollControls>
 
         <Html
           position={[length / 2 - 0.0025, -thickness / 2, -width / 2 - offset]}
@@ -118,6 +120,15 @@ export const LineDimensions = () => {
     </>
   );
 };
+
+// const ListOptionsContainer = styled.div`
+//   position: absolute;
+//   top: -30px;
+//   border: 1px solid;
+//   width: 6rem;
+//   height: 100px;
+//   overflow: scroll;
+// `;
 
 const LineLength = styled.div<{ $scale: number; $show: boolean }>`
   width: ${(props) => props.$scale * 400}px;

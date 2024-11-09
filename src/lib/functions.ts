@@ -154,3 +154,14 @@ export function calculateCirclePositions(numObjects = 6, radius = 2.5) {
 
   return positionsAndRotations as [{ position: [x: number, y: number, z: number]; rotation: [x: number, y: number, z: number] }];
 }
+
+export const generateRange = (arr: number[], step: number) => {
+  const [start, end] = arr;
+  const result = [];
+
+  for (let i = start; i <= end; i += step) {
+    result.push(i);
+  }
+
+  return result;
+};

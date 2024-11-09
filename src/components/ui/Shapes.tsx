@@ -46,7 +46,7 @@ const MenuItem = styled.p<{ $active: boolean }>`
   text-transform: uppercase;
   font-size: 10px;
   letter-spacing: 1px;
-  opacity: ${(props) => (props.$active ? 1 : 0.3)};
+  opacity: ${(props) => (props.$active ? 1 : 0.5)};
   transition: all ease-in-out 0.3s;
   position: relative;
   display: flex;
