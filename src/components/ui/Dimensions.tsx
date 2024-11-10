@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useTableStore } from "../../store/Tablestore";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { generateRange } from "@/lib/functions";
 // import { generateRange } from "@/lib/functions";
 
@@ -14,12 +14,12 @@ export const Dimensions = () => {
   const lengthOptions = generateRange([200, 300], 5);
   const widthOptions = generateRange([100, 140], 5);
 
-  const handleLength = (e: Event, value: number) => {
+  const handleLength = (e: MouseEvent<HTMLParagraphElement>, value: number) => {
     e.stopPropagation();
     update({ tableLength: value / 100 });
   };
 
-  const handleWidth = (e: Event, value: number) => {
+  const handleWidth = (e: MouseEvent<HTMLParagraphElement>, value: number) => {
     e.stopPropagation();
     update({ tableWidth: value / 100 });
   };
