@@ -31,7 +31,7 @@ const ProgressBar = styled.div<{ $step: number }>`
 const ProgressBarBackground = styled.div`
   width: 2px;
   height: 64px;
-  background-color: #f3f3f3;
+  background-color: #ffe4c9;
   border-radius: 10px;
   position: absolute;
   right: 3.2rem;

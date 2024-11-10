@@ -164,7 +164,7 @@ const MeasurmentBorder = styled.div<{ $show: boolean; $hover: boolean }>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: rgb(255, 253, 244);
   }
 `;
 
@@ -172,7 +172,7 @@ const Measurment = styled.p<{ $value: string; $show: boolean }>`
   white-space: nowrap;
   font-size: 12px;
   position: relative;
-  background-color: white;
+  background-color: rgb(255, 253, 244);
   text-align: center;
   display: flex;
   align-items: center;
