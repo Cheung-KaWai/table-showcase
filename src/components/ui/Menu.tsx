@@ -180,7 +180,7 @@ const MenuContainer = styled.div`
 `;
 
 const MenuItemContainer = styled.div<{ $open: boolean }>`
-  background-color: white;
+  backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   transition: ${(props) => (props.$open ? "all 0.3s 0.3s ease-in-out;" : "all 0.3s ease-in-out;")};
@@ -233,7 +233,7 @@ const MenuItem = styled.p<{ $open: boolean; $selected: boolean; $step: string }>
     left: 0;
     top: 0;
     display: block;
-    font-size: 10px;
+    font-size: 8px;
   }
 
   &:hover {

@@ -37,6 +37,7 @@ export const Dimensions = () => {
                   </DimensionOptionValue>
                 ))}
               </LengthOptionsContainer>
+              <ArrowDown src="/arrowDown.svg" />
               <LengthOptionsContainer>
                 {widthOptions.map((x, i) => (
                   <DimensionOptionValue $active={x / 100 === width} onClick={(e) => handleWidth(e, x)} key={i}>
@@ -117,6 +118,12 @@ const InnerContainer = styled.div<{ $expand: boolean }>`
   border-radius: ${(props) => (props.$expand ? "12px" : "32px")};
   transition: all 0.6s ease-in-out;
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.05);
+`;
+
+const ArrowDown = styled.img`
+  width: 20px;
+  height: auto;
+  object-fit: contain;
 `;
 
 const Circle = styled.div<{ $expand: boolean }>`

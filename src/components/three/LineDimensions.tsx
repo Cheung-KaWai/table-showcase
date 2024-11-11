@@ -37,8 +37,7 @@ export const LineDimensions = () => {
           <Html center transform rotation={[-Math.PI / 2, 0, 0]} distanceFactor={1}>
             <MeasurmentBorder $show={show} onMouseEnter={() => setHoverLength(true)} onMouseLeave={() => setHoverLength(false)} $hover={hoverLength}>
               <Measurment $show={show} $value={(length * 100).toFixed(0) + " cm"}>
-                <Icon />
-                {(length * 100).toFixed(0)} cm <Icon></Icon>
+                {(length * 100).toFixed(0)} cm
               </Measurment>
             </MeasurmentBorder>
           </Html>
@@ -82,7 +81,7 @@ export const LineDimensions = () => {
           <Html center transform rotation={[-Math.PI / 2, 0, Math.PI / 2]} distanceFactor={1} zIndexRange={[0, 0]}>
             <MeasurmentBorder $show={show} onMouseEnter={() => setHoverWidth(true)} onMouseLeave={() => setHoverWidth(false)} $hover={hoverWidth}>
               <Measurment $show={show} $value={(width * 100).toFixed(0) + " cm"}>
-                <Icon /> {(width * 100).toFixed(0)} cm <Icon />
+                {(width * 100).toFixed(0)} cm
               </Measurment>
             </MeasurmentBorder>
           </Html>
@@ -141,7 +140,7 @@ const LineWidth = styled.div<{ $scale: number; $show: boolean }>`
 
 const MeasurmentBorder = styled.div<{ $show: boolean; $hover: boolean }>`
   border: 1px solid #3b444b;
-  width: ${(props) => (props.$hover ? "6rem" : "6rem")};
+  width: ${(props) => (props.$hover ? "5rem" : "5rem")};
   opacity: ${(props) => (props.$show ? 1 : 0)};
   transition: ${(props) => (props.$show ? "all 0.05s ease-in-out" : "all 0.3s 0.6s ease-in-out")};
   cursor: pointer;
