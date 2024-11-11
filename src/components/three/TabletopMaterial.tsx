@@ -12,7 +12,9 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
   const maps = useMaterial();
   const {
     tableLength,
+    tableLengthPrevious,
     tableWidth,
+    tableWithPrevious,
     tableThickness,
     tableSteps,
     insetBottom,
@@ -28,7 +30,9 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
   } = useTableStore();
   const uniforms = useMemo(
     () => ({
+      uPreviousLength: new Uniform(tableLengthPrevious),
       uLength: new Uniform(tableLength),
+      uPreviousWidth: new Uniform(tableWithPrevious),
       uWidth: new Uniform(tableWidth),
       uHeight: new Uniform(tableThickness),
       uSteps: new Uniform(tableSteps),
@@ -42,6 +46,8 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
       uPreviousEdge: new Uniform(previousEdge),
       uOval: new Uniform(shape === "oval"),
       uEdgeTransition: new Uniform(0),
+      uLengthTransition: new Uniform(0),
+      uWidthTransition: new Uniform(0),
       uShapeOpacity: new Uniform(0),
       uVerticalEdgeThickness: new Uniform(verticalEdgeThickness),
     }),
@@ -49,8 +55,6 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
   );
 
   useEffect(() => {
-    uniforms.uLength.value = tableLength;
-    uniforms.uWidth.value = tableWidth;
     uniforms.uHeight.value = tableThickness;
     uniforms.uSteps.value = tableSteps;
     uniforms.uInsetBottom.value = insetBottom;
@@ -61,20 +65,7 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
     uniforms.uCurrentEdge.value = currentEdge;
     uniforms.uPreviousEdge.value = previousEdge;
     uniforms.uVerticalEdgeThickness.value = verticalEdgeThickness;
-  }, [
-    tableLength,
-    tableWidth,
-    tableThickness,
-    tableSteps,
-    insetBottom,
-    insetTop,
-    shift,
-    tableColor,
-    tableColorPrevious,
-    currentEdge,
-    previousEdge,
-    verticalEdgeThickness,
-  ]);
+  }, [tableThickness, tableSteps, insetBottom, insetTop, shift, tableColor, tableColorPrevious, currentEdge, previousEdge, verticalEdgeThickness]);
 
   useEffect(() => {
     gsap.fromTo(
@@ -87,6 +78,34 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
       }
     );
   }, [tableColor]);
+
+  useEffect(() => {
+    uniforms.uPreviousLength.value = tableLengthPrevious;
+    uniforms.uLength.value = tableLength;
+    gsap.fromTo(
+      uniforms.uLengthTransition,
+      { value: 0 },
+      {
+        value: 1,
+        duration: 0.6,
+        ease: "linear",
+      }
+    );
+  }, [tableLength]);
+
+  useEffect(() => {
+    uniforms.uPreviousWidth.value = tableWithPrevious;
+    uniforms.uWidth.value = tableWidth;
+    gsap.fromTo(
+      uniforms.uWidthTransition,
+      { value: 0 },
+      {
+        value: 1,
+        duration: 0.6,
+        ease: "linear",
+      }
+    );
+  }, [tableWidth]);
 
   useEffect(() => {
     gsap.fromTo(

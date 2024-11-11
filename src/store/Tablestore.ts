@@ -4,7 +4,9 @@ interface Tablestate {
   showPerf: boolean;
   tableShape: string;
   tableLength: number;
+  tableLengthPrevious: number;
   tableWidth: number;
+  tableWithPrevious: number;
   tableDiameter: number;
   tableThickness: number;
   tableSteps: number;
@@ -33,7 +35,9 @@ export const useTableStore = create<Tablestate>()((set) => ({
   showPerf: false,
   tableShape: "rectangle",
   tableLength: 2.4,
+  tableLengthPrevious: 2.4,
   tableWidth: 1,
+  tableWithPrevious: 1,
   tableDiameter: 1,
   tablecornerRadius: 0,
   tableMaterial: "color.jpg",

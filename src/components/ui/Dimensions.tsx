@@ -12,16 +12,16 @@ export const Dimensions = () => {
   const [expand, setexpand] = useState(false);
 
   const lengthOptions = generateRange([200, 300], 5);
-  const widthOptions = generateRange([100, 140], 5);
+  const widthOptions = generateRange([90, 120], 5);
 
   const handleLength = (e: MouseEvent<HTMLParagraphElement>, value: number) => {
     e.stopPropagation();
-    update({ tableLength: value / 100 });
+    update({ tableLengthPrevious: length, tableLength: value / 100 });
   };
 
   const handleWidth = (e: MouseEvent<HTMLParagraphElement>, value: number) => {
     e.stopPropagation();
-    update({ tableWidth: value / 100 });
+    update({ tableWithPrevious: width, tableWidth: value / 100 });
   };
 
   return (

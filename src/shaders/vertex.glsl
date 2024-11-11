@@ -9,7 +9,11 @@ varying vec3 vWorldPosition;
 varying vec2 vNormal2D;
 
 uniform float uLength;
+uniform float uPreviousLength;
+uniform float uLengthTransition;
 uniform float uWidth;
+uniform float uPreviousWidth;
+uniform float uWidthTransition;
 uniform bool uOval;
 uniform float uHeight;
 uniform float uSteps;
@@ -28,17 +32,20 @@ void main(){
   vUv = uv;
   vCustomNormal = normalize(normal);
 
+  float lengthAnimation = mix(uPreviousLength,uLength,uLengthTransition) / 2.;
+  float widthTransition = mix(uPreviousWidth,uWidth,uWidthTransition);
+
   if(uOval){
-    float offset = (uLength/ 2. - 1.);
+    float offset = (lengthAnimation - 1.);
     csm_Position.x += normalize(-normal2D.x) * offset;  
-    csm_Position.y *= uWidth;
+    csm_Position.y *= widthTransition;
     vUv.x += normalize(-normal2D.x) * offset;  
-    vUv.y *= uWidth;
+    vUv.y *= widthTransition;
   }else{
-    csm_Position.x *= uLength / 2.;
-    csm_Position.y *= uWidth;
-    vUv.x *= uLength/2.;
-    vUv.y *= uWidth;
+    csm_Position.x *= lengthAnimation;
+    csm_Position.y *= widthTransition;
+    vUv.x *= lengthAnimation;
+    vUv.y *= widthTransition;
   }
 
 
