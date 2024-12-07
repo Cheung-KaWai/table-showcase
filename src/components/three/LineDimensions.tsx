@@ -111,15 +111,6 @@ export const LineDimensions = () => {
   );
 };
 
-// const ListOptionsContainer = styled.div`
-//   position: absolute;
-//   top: -30px;
-//   border: 1px solid;
-//   width: 6rem;
-//   height: 100px;
-//   overflow: scroll;
-// `;
-
 const LineLength = styled.div<{ $scale: number; $show: boolean }>`
   width: ${(props) => props.$scale * 400}px;
   height: 1px;
@@ -177,14 +168,4 @@ const Circle = styled.div<{ $show: boolean }>`
   background-color: #3b444b;
   transform: scaleX(${(props) => (props.$show ? 1 : 0)});
   transition: ${(props) => (props.$show ? "all 0.3s 0.6s cubic-bezier(0.02, -0.07, 0, 1.82)" : "all 0.2s ease-in-out")};
-`;
-
-const Icon = styled.span`
-  width: 3px;
-  height: 3px;
-  border-radius: 1px;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  background-color: black;
 `;

@@ -27,7 +27,7 @@ export const Dimensions = () => {
   return (
     <>
       <Container $show={step === 1} $expand={expand}>
-        <MainContainer onClick={() => setexpand((prev) => !prev)}>
+        <MainContainer onMouseLeave={() => setexpand(false)} onMouseEnter={() => setexpand(true)} onClick={() => setexpand((prev) => !prev)}>
           <InnerContainer $expand={expand}>
             <OptionsContainer>
               <LengthOptionsContainer>
@@ -54,7 +54,6 @@ export const Dimensions = () => {
           </InnerContainer>
           <Circle $expand={expand}>
             <Icon src="/upDownArrow.svg" />
-            <Icon src="/upDownArrow.svg" />
             <Icon src="/diagonalArrow.svg" />
           </Circle>
         </MainContainer>
@@ -72,7 +71,7 @@ const OptionsContainer = styled.div`
 const LengthOptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 60px;
+  max-height: 80px;
   overflow: scroll;
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -92,7 +91,7 @@ const Container = styled.div<{ $show: boolean; $expand: boolean }>`
   align-items: center;
   gap: 0.5em;
   transform: ${(props) => (props.$show ? "translateX(-50%) scale(1)" : "translateX(-50%) scale(0)")};
-  transition: ${(props) => (props.$show ? "all 0.4s cubic-bezier(.29,-0.6,.59,1.81)" : "all 0.3s 0.3s cubic-bezier(.29,-0.6,.77,.61)")};
+  transition: ${(props) => (props.$show ? "all 0.4s 0.3s cubic-bezier(.29,-0.6,.59,1.81)" : "all 0.3s 0.3s cubic-bezier(.29,-0.6,.77,.61)")};
 `;
 
 const MainContainer = styled.div`
@@ -110,11 +109,11 @@ const InnerContainer = styled.div<{ $expand: boolean }>`
   justify-content: flex-end;
   align-items: center;
   padding: 0.5em 1em;
-  height: 120px;
+  height: 180px;
   width: 130px;
   overflow: hidden;
   backdrop-filter: blur(20px);
-  max-height: ${(props) => (props.$expand ? "120px" : "42px")};
+  max-height: ${(props) => (props.$expand ? "140px" : "42px")};
   border-radius: ${(props) => (props.$expand ? "12px" : "32px")};
   transition: all 0.6s ease-in-out;
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.05);
@@ -138,7 +137,7 @@ const Circle = styled.div<{ $expand: boolean }>`
   flex-direction: column;
   overflow: hidden;
   img {
-    transform: translateY(${(props) => (props.$expand ? "-200%" : "0")});
+    transform: translateY(${(props) => (props.$expand ? "-100%" : "0")});
   }
   align-self: flex-start;
   &:hover {

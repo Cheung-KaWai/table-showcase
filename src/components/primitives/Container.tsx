@@ -8,5 +8,5 @@ export const Container: FC<PropsWithChildren> = (props) => {
 const ContainerStyled = styled.div`
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #fffdf4 75%, rgba(255, 217, 177, 1) 100%);
+  background: linear-gradient(45deg, #fffdf4 75%, #fffdf4 100%);
 `;
