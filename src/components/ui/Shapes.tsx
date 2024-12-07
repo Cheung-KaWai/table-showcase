@@ -1,51 +1,83 @@
 import { listShapes } from "@/data/data";
 import styled from "styled-components";
 import { useTableStore } from "../../store/Tablestore";
+import { useState } from "react";
 
 export const Shapes = () => {
   const update = useTableStore((state) => state.update);
   const tableShape = useTableStore((state) => state.tableShape);
   const step = useTableStore((state) => state.step);
+  const [expand, setexpand] = useState(false);
+  const currentShape = listShapes.find((x) => x.id === tableShape)!;
   const show = step === 0;
   return (
-    <Menu $show={show}>
-      {listShapes.map((x, index) => (
-        <MenuItem
-          $active={tableShape === x}
-          onMouseEnter={() => {
-            const oldIndex = listShapes.indexOf(tableShape);
-            update({ tableShape: x, animationspeed: Math.abs(oldIndex - index) });
-          }}
-          key={index}
-        >
-          {x}
-        </MenuItem>
-      ))}
+    <Menu $show={show} $expand={expand} onMouseLeave={() => setexpand(false)} onMouseEnter={() => setexpand(true)}>
+      <MenuInnercontainer $expand={expand}>
+        {listShapes.map((x, index) => (
+          <MenuItemContainer>
+            <MenutItemImage src={x.path} />
+            <MenuItem
+              $active={tableShape === x.id}
+              onClick={() => {
+                const oldIndex = listShapes.findIndex((shape) => shape.id === tableShape);
+                update({ tableShape: x.id, animationspeed: Math.abs(oldIndex - index) });
+              }}
+              key={index}
+            >
+              {x.name}
+            </MenuItem>
+          </MenuItemContainer>
+        ))}
+      </MenuInnercontainer>
+      <MenuItemContainer>
+        <MenutItemImage src={currentShape.path} />
+        <MenuItem $active={tableShape === currentShape.id}>{currentShape.name}</MenuItem>
+      </MenuItemContainer>
     </Menu>
   );
 };
 
-const Menu = styled.div<{ $show: boolean }>`
+const Menu = styled.div<{ $show: boolean; $expand: boolean }>`
   position: absolute;
-  left: 0;
-  top: 50%;
+  left: 3rem;
+  bottom: 3rem;
   pointer-events: ${(props) => (props.$show ? "default" : "none")};
   opacity: ${(props) => (props.$show ? 1 : 0)};
-  transform-origin: center center;
-  transform: ${(props) => (props.$show ? "translateY(-50%) translateX(0%)" : "translateY(-50%)  translateX(-5%)")};
-  transition: ${(props) => (props.$show ? "all 0.3s 0.6s ease-in-out" : "all 0.3s ease-in-out")};
+  transform: ${(props) => (props.$show ? "translateX(0%) scale(1)" : "translateX(0%) scale(0)")};
+  transition: ${(props) => (props.$show ? "all 0.3s 0.3s cubic-bezier(.29,-0.6,.59,1.81)" : "all 0.3s 0.3s cubic-bezier(.29,-0.6,.77,.61)")};
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 3rem;
+  cursor: pointer;
+  border-radius: ${(props) => (props.$expand ? "8px" : "8px")};
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.05);
+  /* max-height: ${(props) => (props.$expand ? "140px" : "42px")}; */
+  overflow: hidden;
+`;
+
+const MenuInnercontainer = styled.div<{ $expand: boolean }>`
+  overflow: scroll;
+  max-height: ${(props) => (props.$expand ? "500px" : "0px")};
+  transition: max-height 0.6s ease-in-out;
+`;
+
+const MenuItemContainer = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  padding: 0.625em 1em;
+`;
+
+const MenutItemImage = styled.img`
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 `;
 
 const MenuItem = styled.p<{ $active: boolean }>`
   color: black;
   font-weight: 300;
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 1px;
+  font-size: 14px;
   opacity: ${(props) => (props.$active ? 1 : 0.5)};
   transition: all ease-in-out 0.3s;
   position: relative;
@@ -53,7 +85,7 @@ const MenuItem = styled.p<{ $active: boolean }>`
   align-items: center;
   gap: 3px;
 
-  &::before {
+  /* &::before {
     transition: all ease-in-out 0.3s;
     content: "";
     position: relative;
@@ -69,5 +101,5 @@ const MenuItem = styled.p<{ $active: boolean }>`
     &::before {
       width: 16px;
     }
-  }
+  } */
 `;

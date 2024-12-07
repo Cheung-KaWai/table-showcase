@@ -9,14 +9,14 @@ export const TableShapeList = () => {
 
   const currentShape = useTableStore((state) => state.tableShape);
   const width = useTableStore((state) => state.tableWidth);
-  const currentShapeIndex = listShapes.indexOf(currentShape);
+  const currentShapeIndex = listShapes.findIndex((shape) => shape.id === currentShape);
 
   return (
     <>
       {/* <Tabletop tableShape="oval" positionZ={0} />
       <Tabletop tableShape="oval" positionZ={1} /> */}
       {listShapes.map((x, index) => (
-        <Tabletop key={index} tableShape={x as Shapes} positionZ={1 * ((currentShapeIndex - index) * width + 1 * (currentShapeIndex - index))} />
+        <Tabletop key={index} tableShape={x.id as Shapes} positionZ={1 * ((currentShapeIndex - index) * width + 1 * (currentShapeIndex - index))} />
       ))}
     </>
   );
