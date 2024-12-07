@@ -180,7 +180,7 @@ const MenuContainer = styled.div`
 `;
 
 const MenuItemContainer = styled.div<{ $open: boolean }>`
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   transition: ${(props) => (props.$open ? "all 0.3s 0.3s ease-in-out;" : "all 0.3s ease-in-out;")};

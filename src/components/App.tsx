@@ -7,6 +7,7 @@ import { Menu } from "./ui/Menu";
 import { NextButton } from "./ui/NextButton";
 import { Progress } from "./ui/Progress";
 import { Shapes } from "./ui/Shapes";
+import { TableMaterial } from "./ui/TableMaterial";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Scene />
       <Shapes />
       <Dimensions />
+      <TableMaterial />
       <NextButton />
       <Menu />
       <Progress />
