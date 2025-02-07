@@ -52,28 +52,15 @@ export const listEdges = [
 export const listColors = [
   {
     id: "#ffc494",
+    id2: "oak/color.jpg",
     name: "Straight",
     path: "/shapes/oval.svg",
   },
   {
     id: "#867a6f",
+    id2: "concrete/color.jpg",
     name: "Beveled",
     path: "/shapes/oval.svg",
-  },
-  {
-    id: "#545c5c",
-    name: "Inverted",
-    path: "/shapes/ellipse.svg",
-  },
-  {
-    id: "#ffefe3",
-    name: "Inverted",
-    path: "/shapes/ellipse.svg",
-  },
-  {
-    id: "#737657",
-    name: "Inverted",
-    path: "/shapes/ellipse.svg",
   },
 ];
 export const menu = ["Shape", "Dimensions", "Finishing", "Table Material", "Leg", "Leg Material", "Overview"];

@@ -56,6 +56,8 @@ export const Tabletop: FC<{ tableShape: Shapes; positionZ: number }> = ({ tableS
         vertexNormals[i + 2] = 0;
       }
       tableRef.current.geometry.setAttribute("normal2D", new BufferAttribute(vertexNormals, 3));
+      tableRef.current.geometry.setAttribute("tangent2", tableRef.current.geometry.attributes.tangent.clone());
+      console.log(tableRef.current);
       cubes.current = offsetData;
       seamlessUVs(tableRef.current.geometry, 2 * 0.5, 1 * 0.5);
       // console.log("init", tableRef.current);

@@ -30,7 +30,7 @@ export const TablelegMaterial = () => {
   useEffect(() => {
     gsap.fromTo(
       uniforms.uColorTransition,
-      { value: 0 },
+      { value: 1 },
       {
         value: 1,
         duration: 1,
@@ -42,6 +42,7 @@ export const TablelegMaterial = () => {
 
   return (
     <ThreeCustomShaderMaterial
+      attach="material"
       baseMaterial={MeshStandardMaterial}
       silent
       uniforms={uniforms}

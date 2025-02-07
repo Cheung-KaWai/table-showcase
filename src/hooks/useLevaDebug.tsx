@@ -89,7 +89,7 @@ export const useLevaDebug = () => {
     // },
     material: {
       // options: ["debug.jpg", "color.webp"],
-      options: ["color.jpg", "debug.jpg"],
+      options: ["oak/color.jpg", "debug.jpg"],
       onChange: (value) => update({ tableMaterial: value }),
     },
 

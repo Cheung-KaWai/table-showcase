@@ -40,7 +40,7 @@ export const useTableStore = create<Tablestate>()((set) => ({
   tableWithPrevious: 1,
   tableDiameter: 1,
   tablecornerRadius: 0,
-  tableMaterial: "color.jpg",
+  tableMaterial: "concrete/color.jpg",
   tableThickness: 0.04,
   tableSteps: 40,
   wireframe: false,

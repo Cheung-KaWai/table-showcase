@@ -31,8 +31,8 @@ export const TableMaterial = () => {
           ))}
         </MenuInnercontainer>
         <MenuItemContainer>
-          <MenutItemImage src={currentTableColor.path} />
-          <MenuItem $active={currentTableColor.id === tableColor}>{currentTableColor?.name}</MenuItem>
+          <MenutItemImage src={currentTableColor?.path} />
+          <MenuItem $active={currentTableColor?.id === tableColor}>{currentTableColor?.name}</MenuItem>
         </MenuItemContainer>
       </Menu>
     </>

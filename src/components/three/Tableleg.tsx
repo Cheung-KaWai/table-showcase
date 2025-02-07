@@ -17,10 +17,10 @@ type GLTFResult = GLTF & {
   };
 };
 
-export function Tableleg(props: JSX.IntrinsicElements["group"]) {
-  const { nodes } = useGLTF("/leg-transformed.glb") as unknown as GLTFResult;
+export function Tableleg() {
+  const { scene } = useGLTF("/leg-transformed.glb") as unknown as GLTFResult;
   const length = useTableStore((state) => state.tableLength);
-  const offset = 0.3;
+  const offset = 0.5;
   const step = useTableStore((state) => state.step);
   const show = step >= 4;
   return (
@@ -31,7 +31,7 @@ export function Tableleg(props: JSX.IntrinsicElements["group"]) {
         dispose={null}
         position={[length / 2 - offset, -0.74, 0]}
       >
-        <mesh geometry={nodes.Cube001.geometry} material={nodes.Cube001.material}>
+        <mesh geometry={(scene.children[0] as THREE.Mesh).geometry}>
           <TablelegMaterial />
         </mesh>
       </motion.group>
@@ -41,7 +41,7 @@ export function Tableleg(props: JSX.IntrinsicElements["group"]) {
         dispose={null}
         position={[-length / 2 + offset, -0.74, 0]}
       >
-        <mesh geometry={nodes.Cube001.geometry} material={nodes.Cube001.material}>
+        <mesh geometry={(scene.children[0] as THREE.Mesh).geometry}>
           <TablelegMaterial />
         </mesh>
       </motion.group>

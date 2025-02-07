@@ -9,7 +9,7 @@ import { LineDimensions } from "./LineDimensions";
 
 export const Scene = () => {
   return (
-    <Canvas gl={{ toneMappingExposure: 3, toneMapping: ACESFilmicToneMapping }} camera={{ fov: 60 }}>
+    <Canvas gl={{ toneMappingExposure: 2, toneMapping: ACESFilmicToneMapping }} camera={{ fov: 60 }}>
       <PerfMonitor />
       <TableShapeList />
       <Camera />

@@ -1,5 +1,5 @@
 attribute vec3 normal2D;
-attribute vec3 tangent;
+attribute vec3 tangent2;
 
 
 varying vec2 vUv;
@@ -61,13 +61,13 @@ void main(){
   // csm_Position.xy -= normal2D.xy * vec2((uLength * ((uLength/2.)-1.) / 2.0) - 1.0, 0.0);
 
   //new computed normals using neighbours technique
-  vec3 biTangent = cross(normal, tangent.xyz);
+  vec3 biTangent = cross(normal, tangent2.xyz);
   float shift = uShift;
   // Adjust shift based on the sign of the normal's x or y component
   if (normal.x < -0.7 || normal.y > 0.7) {
     shift = -shift;
   }
-  vec3 positionA = csm_Position + tangent.xyz * shift;
+  vec3 positionA = csm_Position + tangent2.xyz * shift;
   vec3 positionB = csm_Position + biTangent.xyz * shift;
 
   vec2 edgePositionTransition = mix(getOffsetPosition(csm_Position,uHeight,uSteps,uPreviousEdge),getOffsetPosition(csm_Position,uHeight,uSteps,uCurrentEdge),uEdgeTransition);

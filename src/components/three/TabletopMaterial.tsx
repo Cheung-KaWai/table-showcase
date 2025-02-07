@@ -70,7 +70,7 @@ export const TabletopMaterial: FC<{ shape: string }> = ({ shape }) => {
   useEffect(() => {
     gsap.fromTo(
       uniforms.uColorTransition,
-      { value: 0 },
+      { value: 1 },
       {
         value: 1,
         duration: 1,
